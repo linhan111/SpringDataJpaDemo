@@ -1,0 +1,15 @@
+server:
+  port: 8080
+
+spring:
+  datasource:
+    driver-class-name: com.mysql.cj.jdbc.Driver
+    url: jdbc:mysql://这部分已删除/jpa_demo?useUnicode=true&characterEncoding=utf-8
+    username: root
+    password: Mysql123!
+
+  jpa:
+    hibernate:
+      # 第一次加载hibernate时根据model类自动建立起表的结构，以后加载hibernate时根据model类自动更新表结构
+      ddl-auto: update
+    show-sql: true
