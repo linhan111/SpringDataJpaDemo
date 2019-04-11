@@ -4,8 +4,12 @@ import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
 import lombok.experimental.Accessors;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.jpa.domain.support.AuditingEntityListener;
+import org.springframework.format.annotation.DateTimeFormat;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 
 @Setter
 @Getter
@@ -13,6 +17,7 @@ import javax.persistence.*;
 @ToString
 @Entity
 @Table(name = "user")
+@EntityListeners(AuditingEntityListener.class)
 public class User {
 
     /**
@@ -39,4 +44,9 @@ public class User {
      */
     @Column // 省略默认列名就是属性名
     private String address;
+
+    @CreatedDate
+    @Column(name = "create_time")
+    @DateTimeFormat(pattern="yyyy-MM-dd HH:mm:ss")
+    private LocalDateTime createTime;
 }
