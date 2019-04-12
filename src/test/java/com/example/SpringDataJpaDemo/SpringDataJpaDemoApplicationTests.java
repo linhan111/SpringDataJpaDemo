@@ -6,6 +6,9 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Sort;
 import org.springframework.test.context.junit4.SpringRunner;
 
 @RunWith(SpringRunner.class)
@@ -30,7 +33,18 @@ public class SpringDataJpaDemoApplicationTests {
 	 */
 	@Test
 	public void testFindByName() {
-		User result = userRepository.findByName("caleb");
+		User result = userRepository.findByName("caleb111");
 		System.out.println(result);
+	}
+
+
+	/**
+	 * 无条件分页查询
+	 */
+	@Test
+	public void testQueryByPage() {
+		Page<User> result = userRepository.findAll(PageRequest.of(0, 10,
+																  Sort.by("id").descending()));
+		System.out.println("====" + result.toString());
 	}
 }

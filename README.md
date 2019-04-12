@@ -18,4 +18,7 @@
 **update**
 - 根据条件更新所有满足条件的项
 
-**自定义sql**
+**自定义sql**   
+**自定义条件分页sql(important!!)**
+
+``其中Slice与Page两个接口的区别需要注意，Slice功能更强，Page接口继承了Slice接口``
