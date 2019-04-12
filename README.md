@@ -22,3 +22,10 @@
 **自定义条件分页sql(important!!)**
 
 ``其中Slice与Page两个接口的区别需要注意，Slice功能更强，Page接口继承了Slice接口``
+
+**存在的问题：**
+- connection pool使用
+- 事务配置及使用
+- 多数据源配置（需要连mysql与sybase两个数据库进行测试）
+- 复杂场景的sql自定义查询
+- 框架实现原理及对比Mybatis等框架

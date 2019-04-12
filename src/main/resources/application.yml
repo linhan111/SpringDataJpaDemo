@@ -6,12 +6,12 @@ spring:
     name: SpringDataJpaDemo
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://Õâ²¿·ÖÒÑÉ¾³ı/jpa_demo?useUnicode=true&characterEncoding=utf-8
+    url: jdbc:mysql://è¿™é‡Œå·²åˆ é™¤/jpa_demo?useUnicode=true&characterEncoding=utf-8
     username: root
     password: Mysql123!
 
   jpa:
     hibernate:
-      # µÚÒ»´Î¼ÓÔØhibernateÊ±¸ù¾İmodelÀà×Ô¶¯½¨Á¢Æğ±íµÄ½á¹¹£¬ÒÔºó¼ÓÔØhibernateÊ±¸ù¾İmodelÀà×Ô¶¯¸üĞÂ±í½á¹¹
+      # ç¬¬ä¸€æ¬¡åŠ è½½hibernateæ—¶æ ¹æ®modelç±»è‡ªåŠ¨å»ºç«‹èµ·è¡¨çš„ç»“æ„ï¼Œä»¥ååŠ è½½hibernateæ—¶æ ¹æ®modelç±»è‡ªåŠ¨æ›´æ–°è¡¨ç»“æ„
       ddl-auto: update
     show-sql: true
