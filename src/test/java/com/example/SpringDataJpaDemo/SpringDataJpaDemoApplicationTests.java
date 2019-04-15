@@ -1,6 +1,7 @@
 package com.example.SpringDataJpaDemo;
 
 import com.example.SpringDataJpaDemo.domain.User;
+import com.example.SpringDataJpaDemo.domain.UserDemo;
 import com.example.SpringDataJpaDemo.repository.UserRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -58,15 +59,31 @@ public class SpringDataJpaDemoApplicationTests {
     }
 
     /**
-     * 条件查询
+     * QueryByExample and return Page, several limitations:
+     * a.No support for nested or grouped property constraints, such as firstname = ?0 or (firstname = ?1 and lastname = ?2)
+     * b.Only supports starts/contains/ends/regex matching for strings and exact matching for other property types
      */
     @Test
     public void testFindByExample() {
-        ExampleMatcher exampleMatcher = ExampleMatcher.matching()
+        // 默认情况Entity中的空字段不会加入查询条件
+        ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll()
                                                       .withMatcher("name", matcher -> matcher.startsWith().ignoreCase())
-                                                      .withIgnorePaths("id")
+                                                      // 忽略Entity中的某些字段
+                                                      .withIgnorePaths("phone", "address")
+                                                      // 包括其他字段的null值
                                                       .withIncludeNullValues();
-        Example<User> example = Example.of(new User().setName("caleb"), exampleMatcher);
-        List<User> result = userRepository.findAll(example);
+
+        Example<User> example = Example.of(new User().setName("caleb")
+                                                     .setAddress("123")
+                                                     .setPhone("110"), exampleMatcher);
+
+        Page<User> result = userRepository.findAll(example, PageRequest.of(0, 10, Sort.by("id").descending()));
+    }
+
+    @Test
+    public void testQueryUserDemoByNameAndAddress() {
+        // 自定义查询并使用自定义对象作为返回值
+        List<UserDemo> result = userRepository.queryUserDemoByNameAndAddress("caleb", "222");
+        System.out.println(result.toString());
     }
 }

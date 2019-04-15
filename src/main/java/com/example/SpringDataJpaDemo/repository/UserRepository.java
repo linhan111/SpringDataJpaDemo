@@ -1,6 +1,7 @@
 package com.example.SpringDataJpaDemo.repository;
 
 import com.example.SpringDataJpaDemo.domain.User;
+import com.example.SpringDataJpaDemo.domain.UserDemo;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
@@ -47,4 +48,15 @@ public interface UserRepository extends JpaRepository<User, Long> {
     @Query(value = "select t1 from user as t1 where t1.name like %?1%", nativeQuery = true,
            countQuery = "select count(*) from user as t1 where t1.name like %?1%")
     Page<User> findPageUserByName(String name, Pageable pageable);
+
+    /**
+     * 自定义sql并自定义返回对象
+     *
+     * @param name    name
+     * @param address address
+     * @return List<U>
+     */
+    @Query(value = "select new com.example.SpringDataJpaDemo.domain.UserDemo(t1.id as id, t1.name as name1, t1.phone as phone1, t1.address as address1, t1.createTime as createTime)" +
+            "from User as t1 where t1.name like ?1 or t1.address = ?2")
+    List<UserDemo> queryUserDemoByNameAndAddress(String name, String address);
 }
