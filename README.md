@@ -19,7 +19,8 @@
 - 根据条件更新所有满足条件的项
 
 **自定义sql**   
-**自定义条件分页sql(important!!)**
+**自定义条件分页sql(important!!)**    
+**delete方法是逻辑删除还是物理删除**
 
 ``其中Slice与Page两个接口的区别需要注意，Slice功能更强，Page接口继承了Slice接口``
 
@@ -28,4 +29,5 @@
 - 事务配置及使用
 - 多数据源配置（需要连mysql与sybase两个数据库进行测试）
 - 复杂场景的sql自定义查询
+- 自定义repository及方法、封装使所有repository都有自定义的公共方法
 - 框架实现原理及对比Mybatis等框架
