@@ -39,7 +39,7 @@ public interface UserRepository extends JpaRepository<User, Long> {
     List<User> findUserByName(@Param("name1") String name);
 
     /**
-     * 原生sql，分页情况下需要对count sql自定义 jpa暂时未集成
+     * 条件分页sql，分页情况下需要对count sql自定义 jpa暂时未集成
      *
      * @param name     name
      * @param pageable 分页对象
