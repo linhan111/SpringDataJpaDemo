@@ -56,7 +56,12 @@ public interface UserRepository extends JpaRepository<User, Long> {
      * @param address address
      * @return List<U>
      */
-    @Query(value = "select new com.example.SpringDataJpaDemo.domain.UserDemo(t1.id as id, t1.name as name1, t1.phone as phone1, t1.address as address1, t1.createTime as createTime)" +
+    @Query(value = "select new com.example.SpringDataJpaDemo.domain.UserDemo(" +
+            "t1.id as id," +
+            " t1.name as name1," +
+            " t1.phone as phone1," +
+            " t1.address as address1," +
+            " t1.createTime as createTime)" +
             "from User as t1 where t1.name like ?1 or t1.address = ?2")
     List<UserDemo> queryUserDemoByNameAndAddress(String name, String address);
 }
