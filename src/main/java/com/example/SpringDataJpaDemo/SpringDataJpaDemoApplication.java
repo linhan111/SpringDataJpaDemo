@@ -16,6 +16,8 @@ import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 public class SpringDataJpaDemoApplication {
 
     public static void main(String[] args) {
+        // 可以考虑在这里做一些强依赖的判断（检查redis等），若依赖失败则启动服务失败？
+        // throw new RuntimeException("error");
         SpringApplication.run(SpringDataJpaDemoApplication.class, args);
     }
 }

@@ -35,7 +35,6 @@ public class SpringDataJpaDemoApplicationTests {
     @Test
     public void testFindByName() {
         User result = userRepository.findByName("caleb111");
-        System.out.println(result);
     }
 
 
@@ -67,6 +66,7 @@ public class SpringDataJpaDemoApplicationTests {
     public void testFindByExample() {
         // 默认情况Entity中的空字段不会加入查询条件
         ExampleMatcher exampleMatcher = ExampleMatcher.matchingAll()
+                                                      // 只对char/varchar类型有效
                                                       .withMatcher("name", matcher -> matcher.startsWith().ignoreCase())
                                                       // 忽略Entity中的某些字段
                                                       .withIgnorePaths("phone", "address")
@@ -86,4 +86,5 @@ public class SpringDataJpaDemoApplicationTests {
         List<UserDemo> result = userRepository.queryUserDemoByNameAndAddress("caleb", "222");
         System.out.println(result.toString());
     }
+    // 注意下jpa中的查询结果缓存，可能是一个坑，可以使用flush强制刷新
 }
